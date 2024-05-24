@@ -53,6 +53,7 @@
     "escape-html": "^1.0.3",
     "etag": "^1.8.1",
     "event-stream": "^3.3.4",
+    "eventsource": "^2.0.2",
     "expand-brackets": "^2.1.4",
     "express": "^4.19.2",
     "extend-shallow": "^2.0.1",

@@ -1,40 +1,20 @@
-const express = require('express');
-const fetch = require('node-fetch');
+const apiUrl = 'http://localhost:3001/api'; // URL of your proxy server
 
-const app = express();
-const PORT = process.env.PORT || 3001; // Port for the proxy server
-
-const targetUrl = 'https://v2.kaj789.com/sse'; // Target API URL
-
-// Middleware to handle CORS headers
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
-  next();
-});
-
-// Proxy endpoint
-app.get('/api', async (req, res) => {
+async function fetchData() {
   try {
-    const response = await fetch(targetUrl, {
-      headers: {
-        Authorization: req.headers.authorization // Pass authorization header from client to target server
-      }
-    });
+    const response = await fetch(apiUrl); // No need to add headers here; the proxy server handles it
 
     if (!response.ok) {
-      throw new Error('Failed to fetch data from target server');
+      const errorMessage = await response.text();
+      throw new Error(`Failed to fetch data: ${errorMessage}`);
     }
 
     const data = await response.json();
-    res.json(data);
+    console.log(data); // You can process the data here
   } catch (error) {
-    console.error('Proxy server error:', error);
-    res.status(500).send('Proxy server error');
+    console.error('Error fetching data:', error);
+    // No download log functionality
   }
-});
+}
 
-// Start the server
-app.listen(PORT, () => {
-  console.log(`Proxy server is running on port ${PORT}`);
-});
+fetchData();

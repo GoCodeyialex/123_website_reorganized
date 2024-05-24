@@ -81,7 +81,7 @@ ul.nav li.dropdown:hover > ul.dropdown-menu {
 
 .resultnum {
 	display: inline-block;
-	margin: 0 5px;
+	margin: 0 5px 5px;
 	padding-top: 2px;
 	text-align: center;
 	width: 49px;
