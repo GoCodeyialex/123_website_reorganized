@@ -53,8 +53,7 @@ function processResult(data, elementClass) {
   const $boldTxt = $('<div class="maintxt4"></div>');
   const $boldSpan = $('<span class="boldtxt"></span>').text(data.name);
   const $unixTimeSpan = $('<span class="unixtime"></span>').text(data.resultopen.unixtime);
-  const $countdownSpan = $('<span class="countdown3"></span>');
-  $boldTxt.append($boldSpan).append(', ').append($unixTimeSpan).append(' ').append($countdownSpan);
+  $boldTxt.append($boldSpan).append(', ').append($unixTimeSpan);
   $element.append($boldTxt);
 
   // Append resultnums for each number
@@ -68,9 +67,11 @@ function processResult(data, elementClass) {
   $element.append($nextlotteryText);
 
   const nextUnixTime = data.next[0].resultopen.unixtime;
-  const $nextlotteryUnixTime = $('<div class="maintxt3">').text(nextUnixTime);
-  const $nextCountdownSpan = $('<span class="maintxt3"></span></div>');
-  $element.append($nextlotteryUnixTime).append(' ').append($nextCountdownSpan);
+  const $nextlotteryContainer = $('<div class="nextlottery-container"></div>');
+  const $nextlotteryUnixTime = $('<span class="maintxt3"></span>').text(nextUnixTime);
+  const $nextCountdownSpan = $('<span class="maintxt3"></span>');
+  $nextlotteryContainer.append($nextlotteryUnixTime).append(' ').append($nextCountdownSpan);
+  $element.append($nextlotteryContainer);
 
   // Function to update the time left
   function updateTimeLeft() {
@@ -80,10 +81,9 @@ function processResult(data, elementClass) {
     if (timeLeft > 0) {
       const minutes = Math.floor(timeLeft / 60);
       const seconds = timeLeft % 60;
-      $countdownSpan.text(`${minutes}:${seconds}`);
-      $nextCountdownSpan.text(`${minutes}:${seconds}`);
+      const formattedTime = `${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+      $nextCountdownSpan.text(formattedTime);
     } else {
-      $countdownSpan.text('00:00');
       $nextCountdownSpan.text('00:00');
       clearInterval(countdownInterval); // Stop the countdown when it reaches 0
     }
