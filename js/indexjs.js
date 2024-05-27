@@ -3,9 +3,8 @@ function fetchData(endpoint, elementClass) {
 
   eventSource.onmessage = function(event) {
     const data = JSON.parse(event.data);
-    console.log(data); // Log the received data to the console
+    console.log(data);
 
-    // Only process data where the name starts with "123"
     if (data.name.startsWith("123")) {
       if (data.name === "123快乐十分") {
         processResult(data, elementClass);
@@ -37,32 +36,23 @@ function fetchData(endpoint, elementClass) {
   };
 }
 
-// Function to process the result and update the HTML elements
 function processResult(data, elementClass) {
-  // Access specific properties of the data object
   const numbers = data.number.split(',');
-
-  // Update the content of the HTML elements with the received data
   const $element = $(elementClass);
   $element.css("display", "none");
-
-  // Clear existing content in the element
   $element.empty();
 
-  // Create a new <div> element for the bold text
   const $boldTxt = $('<div class="maintxt4"></div>');
   const $boldSpan = $('<span class="boldtxt"></span>').text(data.name);
   const $unixTimeSpan = $('<span class="unixtime"></span>').text(data.resultopen.unixtime);
   $boldTxt.append($boldSpan).append(', ').append($unixTimeSpan);
   $element.append($boldTxt);
 
-  // Append resultnums for each number
   numbers.forEach(function(number) {
     const $resultnum = $('<div class="resultnum"></div>').text(number.trim());
     $element.append($resultnum);
   });
 
-  // Create and append next lottery time text and timestamp
   const $nextlotteryText = $('<div class="maintxt2">NEXT LOTTERY TIME: </div>');
   $element.append($nextlotteryText);
 
@@ -73,9 +63,8 @@ function processResult(data, elementClass) {
   $nextlotteryContainer.append($nextlotteryUnixTime).append(' ').append($nextCountdownSpan);
   $element.append($nextlotteryContainer);
 
-  // Function to update the time left
   function updateTimeLeft() {
-    const currentTime = Math.floor(Date.now() / 1000); // Current Unix time in seconds
+    const currentTime = Math.floor(Date.now() / 1000);
     const timeLeft = nextUnixTime - currentTime;
 
     if (timeLeft > 0) {
@@ -85,21 +74,17 @@ function processResult(data, elementClass) {
       $nextCountdownSpan.text(formattedTime);
     } else {
       $nextCountdownSpan.text('00:00');
-      clearInterval(countdownInterval); // Stop the countdown when it reaches 0
+      clearInterval(countdownInterval);
     }
   }
 
-  // Update the time left every second
   const countdownInterval = setInterval(updateTimeLeft, 1000);
 
-  // Initial update
   updateTimeLeft();
 
-  // Display the container
   $element.fadeIn(300);
 }
 
-// Example usage
 $(document).ready(function() {
   fetchData("http://localhost:3001/api?token=07dd4d5a72f5740ef0f035f201951476", ".result1");
 });
