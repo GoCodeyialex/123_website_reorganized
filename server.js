@@ -1,6 +1,7 @@
 const express = require('express');
 const EventSource = require('eventsource');
 const cors = require('cors');
+const axios = require('axios');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -18,9 +19,14 @@ app.get('/api', async (req, res) => {
       }
     });
 
+    const response = await axios.get('https://api.kaj789.com/api/call');
+    const apiData = response.data.filter(entry => entry.name && entry.name.startsWith("123"));
+
     res.setHeader('Content-Type', 'text/event-stream');
     res.setHeader('Cache-Control', 'no-cache');
     res.setHeader('Connection', 'keep-alive');
+
+    res.write(`data: ${JSON.stringify(apiData)}\n\n`);
 
     eventSource.onmessage = (event) => {
       const eventData = JSON.parse(event.data);
