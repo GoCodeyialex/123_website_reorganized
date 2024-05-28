@@ -7,12 +7,26 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 const targetUrl = 'https://v2.kaj789.com/sse';
+const apiUrl2 = 'https://v2.kaj789.com/api/';
 const token = 'Bearer 6^tN;HXr%_,AdY?N}dX,Qt2hZ!z6v</12i@SE;T=}Rka3R$zmo';
 
 app.use(cors());
 
+app.get('/getData', async (req, res) => {
+    const { name } = req.query;
+    const url = apiUrl2 + name;
+    const apiResponse = await axios.get(url,{
+      headers: {
+        'Authorization': token
+      }
+    });
+
+    console.log(apiResponse.data);
+    res.json(apiResponse.data);
+});
+
+
 app.get('/api', async (req, res) => {
-  try {
     const eventSource = new EventSource(targetUrl, {
       headers: {
         'Authorization': token
@@ -35,16 +49,6 @@ app.get('/api', async (req, res) => {
         res.write(`data: ${JSON.stringify(eventData)}\n\n`);
       }
     };
-
-    eventSource.onerror = (error) => {
-      console.error('Error connecting to SSE server:', error);
-      res.status(500).send(`Error connecting to SSE server: ${error.message}`);
-    };
-
-  } catch (error) {
-    console.error('Proxy server error:', error);
-    res.status(500).send(`Proxy server error: ${error.message}`);
-  }
 });
 
 app.listen(PORT, () => {

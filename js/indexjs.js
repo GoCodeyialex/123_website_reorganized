@@ -3,7 +3,6 @@ function fetchData(endpoint, elementClass) {
 
   eventSource.onmessage = function(event) {
     const data = JSON.parse(event.data);
-    console.log(data);
       if (Array.isArray(data)) {
         data.forEach(item => {
           if (item.name === "123快乐十分") {
