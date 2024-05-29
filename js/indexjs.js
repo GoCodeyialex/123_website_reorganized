@@ -110,7 +110,6 @@ function processResult(data, elementClass) {
   const $element = $(elementClass);
   $element.css("display", "none");
   $element.empty();
-
   const $boldTxt = $('<div class="maintxt4"></div>');
   const $boldSpan = $('<span class="boldtxt"></span>').text(data.name);
   const $unixTimeSpan = $('<span class="unixtime"></span>').text(data.resultopen.unixtime);

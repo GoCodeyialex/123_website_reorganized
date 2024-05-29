@@ -5,7 +5,7 @@
     <title>Speedy Lottos</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="css/main.css">
@@ -23,7 +23,7 @@
 	
 </head>
 
-<body>
+<body data-name="123赛车">
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
@@ -61,25 +61,21 @@
                             </li>
                         </ul>
                     </li>
-                    
-                   
                 </ul>
             </div>
         </div>
     </nav>
     <div class="container-fluid bgblue pb30">
-        <div class="container mt50 bgblue text-center pl0 pr0">
-   	    <img src="img/speed3-banner.jpg" width="935" height="183"  alt="" class="headerimgresponsive"/> </div>
+        <div class="container mt70 bgblue text-center pl0 pr0">
+   	    <img src="img/home-banner.png" width="935" height="183"  alt="" class="headerimgresponsive"/> </div>
 	</div>
     
-    <div class="container-fluid bggray pb40 pt40">
+    <div class="container-fluid bggray pb40 pt40 mainHeader">
         <div class="container text-left">
         	<div class="row ">
             	<div class="col-xs-12 col-md-10 resultheader bluetxt"><div>WINNING NUMBERS, <span class="txtbold"></span></div>
-                <div class="mt10 mb15">
+                <div class="mt10 mb15 resultnum4">
                 	<div class="resultnum2"></div>
-                    <div class="resultnum2"></div>
-                    <div class="resultnum2"></div>
                 </div>
                 
                 </div>
@@ -94,10 +90,6 @@
             	<div class="col-xs-12 col-md-9">
                 	<h1>CHECK LOTTERY RESULTS ONLINE</h1>
                 </div>
-              	<div class="col-xs-12 col-md-3 clearfix mt25">
-                	<div class="pull-left relative "><input type="text" class="search"><a href="javascript:void(0);" class="searchbtn"><img src="img/searchicon.jpg" width="23" height="23" alt=""/></a></div>
-                	<div id="datepicker" class="pull-left ml5"><img src="img/calendaricon.jpg" width="36" height="33" alt=""/></div>
-              	</div>
             </div>
             <div class="row">
             	<div class="col-xs-12">
@@ -116,19 +108,9 @@
     <div class="container-fluid bgwhite bordergray pb50">
         <div class="container resulttable graytxt">
                 
-                	<div class="row bordergray2 pb10 pt10">
-                    	<div class="col-xs-5  col-md-3 mt5">33176908</div>
-                        <div class="hidden-xs  col-md-3 mt5 pr0">Tue, May 28, 2024 11:40:30 pm</div>
-                        <div class="col-xs-7  col-md-6">
-                        	<div class="resultnum3">3</div>
-                            <div class="resultnum3">3</div>
-                            <div class="resultnum3">4</div>
-                        </div> 
-                    </div>
-					<div class="moreresult">
-						<button style="border: 1px solid #53aacb; padding: 10px 20px; margin: 20px 0 0 450px; font-size: 16px; color: #53aacb; background: none;" class="loadresult">Load More Results</button>
-					</div>
-					
+        </div>
+        <div class="moreresult">
+            <button style="border: 1px solid #53aacb; padding: 10px 20px; margin: 20px 0 0 40%; font-size: 16px; color: #53aacb; background: none;" class="loadresult">Load More Results</button>
         </div>
     </div>
 
@@ -136,25 +118,13 @@
     <div class="container-fluid bgwhite">
         <div class="container text-center pt80 pb50">
 			<a href="http://www.gaminglabs.com/extranetgli/cmsadmin/getsplash.asp?i=303" target="_blank" class="footergl"><img src="img/gaminglab.jpg"  /></a>
-   	    	<img src="img/home-footerlogo.jpg" width="514" height="74"  alt="" class="footerimgresponsive"/> </div>
+   	    	<img src="img/home-banner.png" width="514" height="74"  alt="" class="footerimgresponsive"/> </div>
     </div>
     <script src="js/jquery-1.11.2.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/pikaday.js"></script>
     <script src="js/plugins.js"></script>
     <script src="js/moment.js"></script>
-    <button id="loadDataBtn">Load Data</button>
-
-    <script>
-        document.getElementById('loadDataBtn').addEventListener('click', async function() {
-            try {
-                const response = await fetch('http://localhost:3001/getData?name=123赛车');
-                const data = await response.json();
-                console.log(data); // Handle the API response data as needed
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
-        });
-    </script>
+    <script src="js/loadData.js"></script>
 </body>
 </html>

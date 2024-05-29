@@ -37,7 +37,7 @@ ul.nav li.dropdown:hover > ul.dropdown-menu {
 }
 
 .homebg {
-	background-image:url(../img/home-banner.jpg);
+	
 	background-position: top center;
 	background-repeat: no-repeat;
 	height: auto;
@@ -175,15 +175,20 @@ ul.nav li.dropdown:hover > ul.dropdown-menu {
 	margin-left: -120px;
 }
 
+.pb30main {
+    padding-bottom: 30px!important;
+	text-align: center;
+	padding-top:50px;
+}
 .headerimgresponsive {
-	width: 100%;
+	width: 30%;
 	height: auto;
 	max-width: 935px;
 	text-align: center;
 }
 
 .footerimgresponsive {
-	width: 100%;
+	width: 20%;
 	height: auto;
 	max-width: 514px;
 	text-align: center;
@@ -291,6 +296,9 @@ ul.nav li.dropdown:hover > ul.dropdown-menu {
 	border-radius: 25px;
 }
 
+.resultnum4{
+	text-wrap: nowrap;
+}
 .relative {
 	position: relative;	
 }

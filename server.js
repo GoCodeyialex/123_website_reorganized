@@ -21,7 +21,6 @@ app.get('/getData', async (req, res) => {
       }
     });
 
-    console.log(apiResponse.data);
     res.json(apiResponse.data);
 });
 
